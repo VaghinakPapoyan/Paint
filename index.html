@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="fonts/ubuntumono.css">
+	<link rel="stylesheet" href="styles/index.css">
+	<link rel="stylesheet" href="styles/reset.css">
+</head>
+<body>
+
+	<div id="canvas"></div>
+
+	<!-- Left Tools  -->
+	<div class="tools">
+		<div onclick="changeTool(this)" title="Pen" id="pen" class="tool active"></div>
+		<div onclick="changeTool(this)" title="Line" id="line" class="tool"></div>
+		<div onclick="changeTool(this)" title="Rect" id="rect" class="tool"></div>
+		<div onclick="changeTool(this)" title="Circle" id="circle" class="tool"></div>
+		<div onclick="changeTool(this)" title="Arrow" id="arrow" class="tool"><img src="images/arrow.png" alt="eraser" /><img src="images/arrow_inverted.png" class="inverted" alt="eraser" /></div>
+		<div onclick="changeTool(this)" title="Lasso" id="lasso" class="tool"><img src="images/lasso.png" alt="eraser" /><img src="images/lasso_inverted.png" class="inverted" alt="eraser" /></div>
+		<div onclick="changeTool(this)" title="Text" id="text" class="tool">T</div>
+		<div onclick="changeTool(this)" title="Eraser" id="eraser" class="tool"><img src="images/eraser.png" alt="eraser" /><img src="images/eraser_inverted.png" class="inverted" alt="eraser" /></div>
+	</div>
+	
+	<!-- Top Tools  -->
+	<div class="tools settings">
+		<div id="colors" class="setting">
+			<input title="Color" id="color" value="#00ADB5" type="color">
+			<div class="arrowDown">&#9660;</div>
+		</div>
+		<div id="lineWidth" title="Line Width" class="setting">
+			<select id="lineWidthSelect">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5" selected>5</option>
+				<option value="7">7</option>
+				<option value="9">9</option>
+				<option value="11">11</option>
+				<option value="13">13</option>
+				<option value="15">15</option>
+				<option value="18">18</option>
+				<option value="21">21</option>
+				<option value="24">24</option>
+				<option value="27">27</option>
+				<option value="31">31</option>
+				<option value="35">35</option>
+				<option value="39">39</option>
+				<option value="43">43</option>
+				<option value="47">47</option>
+				<option value="51">51</option>
+			</select>
+			12px
+		</div>
+		<div title="Borded Or Fill" onclick="addActiveClass(this)" id="bordered" class="setting"></div>
+		<div title="Clear" onclick="clearCanvas()" id="clear" class="setting"><p>clear</p></div>
+	</div>
+		<div id="bottomPopup" onclick="endLasso()" class="bottom-popup">
+			End lasso?
+			<img src="images/check.png" alt="">
+		</div>
+	<script defer src="scripts/index.js"></script>
+</body>
+</html>
