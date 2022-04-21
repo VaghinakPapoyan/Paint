@@ -82,7 +82,6 @@ function changeTool(tool)
 	tool.classList.add("active")
 	toolType = tool.id;
 
-	console.log(toolType);
 	// change Cursor type 
 	if(toolType === "text")
 	{
@@ -91,6 +90,14 @@ function changeTool(tool)
 	else
 	{
 		setCursor("auto")
+	}
+	// set Drag on objects 
+	if(toolType === "move")
+	{
+		addDrag();
+	}
+	else{
+		removeDrag();
 	}
 }
 
@@ -128,6 +135,45 @@ window.onresize = () =>
 	ctx.strokeStyle = document.getElementById("color").value;
 }
 
+// start drag 
+let startPositionX = 0, startPositionY = 0;
+function startDrag(e)
+{
+	startPositionX = e.clientX
+	startPositionY = e.clientY
+}
+// end drag 
+function endDrag(e)
+{
+	extractX = Number(e.path[0].style.left.slice(0, -2)) + e.clientX - startPositionX;
+	extractY = Number(e.path[0].style.top.slice(0, -2)) + e.clientY - startPositionY;
+	e.path[0].style = e.path[0].style.cssText + `left: ${extractX}px; top: ${extractY}px;`;
+}
+// function for adding drag for objects
+function addDrag()
+{
+	const array = [...document.getElementsByClassName("text-input")]
+	array.forEach(input => {
+		const element = document.getElementById(input.id);
+		element.disabled = true;
+		element.style.cursor = "grabbing";
+		element.draggable = true;
+		element.ondragstart = startDrag;
+		element.ondragend = endDrag;
+	})
+}
+function removeDrag()
+{
+	const array = [...document.getElementsByClassName("text-input")]
+	array.forEach(input => {
+		const element = document.getElementById(input.id);
+		element.disabled = false;
+		element.style.cursor = "default";
+		element.draggable = false;
+		element.ondragstart = null;
+		element.ondragend = null;
+	})
+}
 // Create input when chosen text tool type 
 let inputCount = 0;
 function createInput(e) 
@@ -155,9 +201,11 @@ function changeInput(e)
 {
 	return thisInput => 
 	{
-		if(e.target.value.length === 0)
-			thisInput.remove();
-		thisInput.style.width = (e.target.value.length || 1) + "ch";
+		if(thisInput){
+			if(e.target.value.length === 0)
+				thisInput.remove();
+			thisInput.style.width = (e.target.value.length || 1) + "ch";
+		}
 	}
 }
 

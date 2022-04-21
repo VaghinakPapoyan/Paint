@@ -51,7 +51,7 @@
 	width: 55%;
 	transition: 0.5s;
 }
-#eraser img.inverted, #lasso img.inverted, #arrow img.inverted 
+#eraser img.inverted, #lasso img.inverted, #arrow img.inverted, #move img.inverted
 {
 	display: none;
 }
@@ -66,6 +66,20 @@
 	font-family: 'Montserrat', sans-serif;
 	font-size: 36px;
 	position: relative;
+}
+#move img
+{
+	display: block;
+	width: 35px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	transition: 0.2s;
+}
+#move:hover img
+{
+	transform: translate(-50%, -50%) rotate(45deg);
 }
 
 /* Tool hover */
@@ -186,7 +200,8 @@
 #text.active,
 #eraser.active,
 #lasso.active,
-#arrow.active
+#arrow.active,
+#move.active
 {
 	-webkit-box-shadow: 0px 0px 15px 0px rgba(34, 40, 49, 0.17);
 	-moz-box-shadow: 0px 0px 15px 0px rgba(34, 40, 49, 0.17);
@@ -204,11 +219,11 @@
 {
 	border-color: #393E46;
 }
-#eraser.active img.inverted, #lasso.active img.inverted, #arrow.active img.inverted
+#eraser.active img.inverted, #lasso.active img.inverted, #arrow.active img.inverted, #move.active img.inverted
 {
 	display: block;
 }
-#eraser.active img, #lasso.active img, #arrow.active img
+#eraser.active img, #lasso.active img, #arrow.active img, #move.active img
 {
 	display: none;
 }
@@ -416,7 +431,7 @@
 	{
 		transform: translateX(140%);
 	}
-	50.1%
+	50.000001%
 	{
 		transform: translateX(-140%);
 	}
